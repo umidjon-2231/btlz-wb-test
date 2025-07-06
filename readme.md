@@ -86,6 +86,8 @@ npm start
 | `npm run build` | Сборка проекта |
 | `npm start` | Запуск продакшен версии |
 | `npm run knex:dev` | Управление миграциями и сидами |
+| `npm run spreadsheet:dev` | Управление Google Sheets таблицами (разработка) |
+| `npm run spreadsheet` | Управление Google Sheets таблицами (продакшен) |
 | `npm run tsc:check` | Проверка TypeScript |
 | `npm run prettier` | Проверка форматирования кода |
 | `npm run eslint` | Проверка линтером |
@@ -104,6 +106,24 @@ npm run knex:dev migrate make migration_name
 
 # Создать новый сид
 npm run knex:dev seed make seed_name
+```
+
+## Управление Google Sheets
+
+```bash
+# Добавить ID таблицы Google Sheets в базу данных (разработка)
+npm run spreadsheet:dev add SPREADSHEET_ID
+
+# Добавить ID таблицы Google Sheets в базу данных (продакшен)
+npm run spreadsheet add SPREADSHEET_ID
+```
+
+Где `SPREADSHEET_ID` - это ID таблицы Google Sheets из URL:
+`https://docs.google.com/spreadsheets/d/SPREADSHEET_ID/edit`
+
+Пример:
+```bash
+npm run spreadsheet:dev add 1AbC_dEfGhIjKlMnOpQrStUvWxYz1234567890
 ```
 
 ## Структура проекта

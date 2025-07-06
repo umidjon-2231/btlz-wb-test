@@ -11,6 +11,8 @@
     "build": "tsc --allowJs",
     "start": "node dist/app.js",
     "knex": "node dist/utils/knex.js",
+    "spreadsheet": "node dist/utils/spreadsheet.js",
+    "spreadsheet:dev": "tsx src/utils/spreadsheet.ts",
     "tsc:check": "tsc --allowJs --noEmit",
     "prettier": "prettier --config .prettierrc.json src/**/*.js --check",
     "prettier-format": "prettier --config .prettierrc.json src/**/*.js --write",
