@@ -126,37 +126,15 @@ npm run spreadsheet add SPREADSHEET_ID
 npm run spreadsheet:dev add 1AbC_dEfGhIjKlMnOpQrStUvWxYz1234567890
 ```
 
-## Структура проекта
-
-```
-src/
-├── app.ts                 # Точка входа приложения
-├── config/
-│   ├── axios/
-│   │   └── axios.ts      # Конфигурация HTTP клиента
-│   └── env/
-│       └── env.ts        # Валидация переменных окружения
-├── postgres/
-│   ├── knex.ts           # Конфигурация Knex.js
-│   ├── migrations/       # Миграции базы данных
-│   └── seeds/           # Сиды для базы данных
-└── utils/
-    ├── exportToSheets.ts # Экспорт данных в Google Sheets
-    ├── fetchTariffs.ts   # Получение тарифов из WB API
-    └── knex.ts          # CLI утилиты для работы с БД
-```
-
-## Функциональность
-
 ### Получение тарифов
 Приложение автоматически получает тарифы коробок из API Wildberries каждый час:
+- Название склада (`warehouse_name`)
+- Коэффициент тарифа (`box_delivery_and_storage_expr`) - коэффициент в %, на который умножается стоимость доставки и хранения
+- Доставка 1 литра (`box_delivery_dase`) - базовая стоимость доставки, ₽
+- Доставка каждого дополнительного литра (`box_delivery_diter`) - стоимость доставки за каждый дополнительный литр, ₽
+- Хранение 1 литра (`box_storage_base`) - базовая стоимость хранения, ₽
+- Хранение каждого дополнительного литра (`box_storage_liter`) - стоимость хранения за каждый дополнительный литр, ₽
 - Дата и время запроса
-- Название склада
-- Коэффициент тарифа
-- Базовая стоимость доставки
-- Стоимость доставки за литр
-- Базовая стоимость хранения
-- Стоимость хранения за литр
 
 ### Экспорт в Google Sheets
 Данные экспортируются в Google Sheets с:
@@ -179,17 +157,17 @@ src/
 
 ## Переменные окружения
 
-| Переменная | Описание | Обязательная |
-|------------|----------|--------------|
-| `POSTGRES_HOST` | Хост PostgreSQL | Да |
-| `POSTGRES_PORT` | Порт PostgreSQL | Да |
-| `POSTGRES_DB` | Название базы данных | Да |
-| `POSTGRES_USER` | Пользователь БД | Да |
-| `POSTGRES_PASSWORD` | Пароль БД | Да |
-| `APP_PORT` | Порт приложения | Нет |
-| `WB_API_TOKEN` | Токен API Wildberries | Да |
-| `GOOGLE_SHEETS_KEY_FILE` | Путь к файлу с Google ключами | Да |
-| `NODE_ENV` | Окружение (development/production) | Нет |
+| Переменная               | Описание                           | Обязательная |
+|--------------------------|------------------------------------|--------------|
+| `POSTGRES_HOST`          | Хост PostgreSQL                    | Да           |
+| `POSTGRES_PORT`          | Порт PostgreSQL                    | Да           |
+| `POSTGRES_DB`            | Название базы данных               | Да           |
+| `POSTGRES_USER`          | Пользователь БД                    | Да           |
+| `POSTGRES_PASSWORD`      | Пароль БД                          | Да           |
+| `APP_PORT`               | Порт приложения                    | Нет          |
+| `WB_API_TOKEN`           | Токен API Wildberries              | Да           |
+| `GOOGLE_SHEETS_KEY_FILE` | Путь к файлу с Google ключами      | Да           |
+| `NODE_ENV`               | Окружение (development/production) | Нет          |
 
 ## Docker
 
